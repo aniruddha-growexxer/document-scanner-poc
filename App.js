@@ -22,6 +22,8 @@ import {
   View,
   TouchableOpacity,
   ActivityIndicator,
+  Platform,
+  Image,
 } from 'react-native';
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 import ImageCropPicker from 'react-native-image-crop-picker';
@@ -55,21 +57,24 @@ const App: () => Node = () => {
   };
 
   const uploadImage = async (imagePath) => {
+    if (Platform.OS === 'android') {
+      imagePath = "file://" + imagePath;
+    }
     const formData = new FormData();
-    formData.append('image', { uri: imagePath, name: 'image.jpg', type: 'image/jpeg' });
+    formData.append('file', { uri: imagePath, name: 'image.jpg', type: 'image/jpeg' });
     try {
-      const response = await axios.post('http://localhost:4000/upload', formData, {
+      const response = await axios.post('https://python-document-scanner.onrender.com/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
         responseType: 'arraybuffer',
       });
-      // console.log(response.data);
+      console.log(response.data);
       const imageData = Buffer.from(response.data, 'base64');
       const base64Image = `data:image/jpeg;base64,${imageData.toString('base64')}`;
       setImageUri(base64Image);
     } catch (error) {
-      console.error(error);
+      console.error('error is', error);
     }
   }
 
@@ -93,17 +98,28 @@ const App: () => Node = () => {
           <View style={{ flex: 1 }}>
 
             <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
-              {isLoading ? (
+              {isLoading ?
                 <View style={{ marginBottom: 20 }}>
                   <ActivityIndicator size="large" />
+                </View> : null}
+
+              {imageUri ? (
+                <View style={styles.sectionContainer}>
+                  <Text style={{ marginBottom: 20, alignItems: 'center', color: 'red' }}>Image captured!</Text>
+                  <Image
+                    style={{
+                      height: 200,
+                      width: 200
+                    }}
+                    resizeMode='contain'
+                    source={{
+                      uri: imageUri
+                    }} />
                 </View>
-              ) : imageUri ? (
-                <Text style={{ marginBottom: 20 }}>Image captured!</Text>
-              ) : (
-                <TouchableOpacity onPress={() => takePicture()}>
-                  <Text style={{ fontSize: 20, marginBottom: 20, color: 'red' }}>Take Photo</Text>
-                </TouchableOpacity>
-              )}
+              ) : null}
+              <TouchableOpacity onPress={() => takePicture()}>
+                <Text style={{ fontSize: 20, marginBottom: 20, color: 'red' }}>Take Photo</Text>
+              </TouchableOpacity>
             </View>
 
           </View>

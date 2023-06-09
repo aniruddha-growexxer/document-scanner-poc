@@ -490,7 +490,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VWV7SJ853T;
+				DEVELOPMENT_TEAM = S75K747LX2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = awesomeProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -502,7 +502,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.example.awesomeProject1234;
+				PRODUCT_BUNDLE_IDENTIFIER = com.growexx.document;
 				PRODUCT_NAME = awesomeProject;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -520,7 +520,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VWV7SJ853T;
+				DEVELOPMENT_TEAM = S75K747LX2;
 				INFOPLIST_FILE = awesomeProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,7 +531,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.example.awesomeProject1234;
+				PRODUCT_BUNDLE_IDENTIFIER = com.growexx.document;
 				PRODUCT_NAME = awesomeProject;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
